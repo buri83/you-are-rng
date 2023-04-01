@@ -1,4 +1,5 @@
-build:
+b:
+	npm i
 	npx tsc
 
 tsc-w:
