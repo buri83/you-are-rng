@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <style>
+            .gameScreen {
+                margin: auto;
+                margin-top: 50px;
+                width: 800px;
+                height: 500px;
+                background-color: lightgray;
+                border-radius: 16px;
+            }
+
+            .screenText {
+                color: black;
+                font-size: 32px;
+            }
+
+            .screenText-mini {
+                color: black;
+                font-size: 24px;
+            }
+
+            .screenText-tt {
+                color: black;
+                font-size: 24px;
+            }
+
+            .screenText-mini-tt {
+                color: black;
+                font-size: 20px;
+            }
+
+            .textFlame {
+                margin: auto;
+                width: 90%;
+                padding-bottom: 30px;
+            }
+
+            #yourOutputToCopy {
+                width: 800px;
+                height: 60px;
+            }
+
+            #prologueScreen {
+                display: none;
+            }
+
+            .captionFlame {
+                height: 300px;
+                padding-top: 100px;
+            }
+
+            #evaluatingScreen {
+                display: none;
+            }
+
+            #evaluatingText {
+                margin: auto;
+                padding-top: 150px;
+                text-align: center;
+
+                color: black;
+                font-size: 48px;
+            }
+
+            #loadingImage {
+                padding-top: 50px;
+                padding-left: 350px;
+            }
+
+            #mainScreen {
+                display: none;
+            }
+
+            .headerText {
+                height: 100px;
+                padding-top: 30px;
+            }
+
+            #currentGeneratingText {
+                margin: auto;
+                text-align: center;
+                font-family: Ricty;
+                padding-bottom: 5px;
+                width: 80%;
+                border-bottom: black 1px solid;
+            }
+
+            .generatedText {
+                margin: auto;
+                text-align: left;
+                padding: 8px;
+                margin-top: 16px;
+                width: 70%;
+                border: black 1px solid;
+            }
+
+            .generatedTextMark {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            #textSpace {
+                height: 320px;
+            }
+
+            #gameTimerBar {
+                height: 10px;
+                margin: auto;
+                width: 100%;
+                background-color: green;
+                border-radius: 8px;
+            }
+
+            #timeIsOver {
+                display: none;
+                background-color: black;
+            }
+
+            .errorTitle {
+                color: red;
+                font-size: 80px;
+            }
+
+            .errorMessage {
+                color: red;
+                font-size: 50px;
+            }
+
+            #resetButton {
+                margin-left: 250px;
+                margin-top: 100px;
+                height: 64px;
+                width: 300px;
+                font-size: 32px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- プロローグ -->
+        <div id="prologueScreen" class="gameScreen">
+            <div id="captionFlame" class="screenText textFlame captionFlame"><span id="caption"></span></div>
+            <div id="instructionFlame" class="screenText-mini textFlame"><span id="instruction"></span></div>
+        </div>
+
+        <!-- ゲーム終了画面 -->
+        <div id="evaluatingScreen" class="gameScreen">
+            <div id="evaluatingText" class="screenText">
+                乱数の送信に成功しました<br />
+                評価しています....
+            </div>
+            <img id="loadingImage" src="./786.gif" />
+        </div>
+
+        <!-- メインのゲーム画面 -->
+        <div id="mainScreen" class="gameScreen">
+            <div id="gameHeader" class="screenText textFlame headerText">乱数列を生成せよ！！！</div>
+            <div id="textSpace">
+                <div id="currentGeneratingText" class="screenText-tt"></div>
+                <div id="generatedTexts" class="screenText-mini-tt"></div>
+            </div>
+            <div id="gameTimerBar"></div>
+        </div>
+
+        <!-- タイムオーバー -->
+        <div id="timeIsOver" class="gameScreen">
+            <div class="textFlame">
+                <div class="screenText headerText errorTitle">ERROR:</div>
+                <div class="screenText headerText errorMessage">
+                    Timed out !! response from random number generator is too slow.
+                </div>
+            </div>
+            <button id="resetButton" onclick="window.location.reload();">Reboot</button>
+        </div>
+    </body>
+</html>
+
+<script src="./gamePage.bundle.js"></script>

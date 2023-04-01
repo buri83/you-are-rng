@@ -1,0 +1,26 @@
+{
+  "name": "you-are-rng",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/lodash": "^4.14.192",
+    "@types/mersenne-twister": "^1.1.2",
+    "@types/pako": "^2.0.0",
+    "chart.js": "^4.2.1",
+    "chartjs-plugin-annotation": "^2.2.1",
+    "lodash": "^4.17.21",
+    "mersenne-twister": "^1.1.0",
+    "pako": "^2.1.0",
+    "typescript": "^5.0.3",
+    "webpack": "^5.77.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
+}
