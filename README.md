@@ -4,7 +4,7 @@
 
 もしあなたが乱数生成器であると主張するのであれば、ここで証明することができます。
 
-https://you-are-rng.game.burion.net/
+https://are-you-rng.game.burion.net/
 
 # 遊び方
 
