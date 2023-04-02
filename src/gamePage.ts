@@ -1,5 +1,4 @@
 import { ValidChar } from "./validChar";
-import { deflate } from "./compress";
 import { getRandomInt } from "./random";
 import { enter, generated, sending, timeout, typeWriter } from "./sound";
 
