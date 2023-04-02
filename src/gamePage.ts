@@ -177,11 +177,7 @@ async function main(): Promise<void> {
     const playerRandomTexts = await game();
     await evaluating();
 
-    const result = deflate(
-        JSON.stringify({
-            playerRandomTexts,
-        })
-    );
+    const result = playerRandomTexts.map((chars) => chars.join("")).join(",");
 
     console.log(result);
     window.location.href = `result.html?result=${result}`;

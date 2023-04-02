@@ -1,25 +1,21 @@
 import { ValidChar, isValidChar, modChar } from "./validChar";
 import { Chart } from "chart.js/auto";
 import annotationPlugin from "chartjs-plugin-annotation";
-import { inflate } from "./compress";
 import { rivalRandomChars } from "./rivals";
 import { getResultComment } from "./resultComment";
 Chart.register(annotationPlugin);
 
 const url = new URL(window.location.href);
-const resultCompressed = url.searchParams.get("result");
-if (!resultCompressed) {
+const resultCSV = url.searchParams.get("result");
+if (!resultCSV) {
     const resultComment = document.getElementById("resultComment") as HTMLElement;
     resultComment.style.paddingTop = "50px";
     resultComment.innerHTML = "結果を表示できませんでした。<br>Retry を押すとゲームを始められます。";
-
     throw new Error();
 }
 
-const result = JSON.parse(inflate(resultCompressed));
-
-const playerRandomTexts: ValidChar[][] = result.playerRandomTexts;
-const chars = playerRandomTexts.flat();
+const playerRandomTexts: string[] = resultCSV.split(",");
+const chars = playerRandomTexts.map((t) => t.split("")).flat() as ValidChar[];
 
 // 乱数を表示する
 const generatedTexts = document.getElementById("generatedTexts") as HTMLElement;
@@ -27,7 +23,7 @@ playerRandomTexts.map((t) => {
     generatedTexts.innerHTML += `
     <div class="generatedText screenText-mini-tt">
         <tt>
-            ${t.join("")}
+            ${t}
         </tt>
     </div>
 `;
@@ -429,8 +425,12 @@ function insertRanking(rank: number, evaluator: Evaluator): void {
 const player = new Evaluator("あなた", chars, true);
 const totalScore = document.getElementById("totalScore") as HTMLElement;
 const resultComment = document.getElementById("resultComment") as HTMLElement;
+const shareButton = document.getElementById("shareButton") as HTMLElement;
+
 totalScore.textContent = player.scores.total.toFixed(3);
-resultComment.textContent = getResultComment(player.scores.total);
+const comment = getResultComment(player.scores.total);
+resultComment.textContent = comment;
+shareButton.setAttribute("data-text", `Score:${player.scores.total.toFixed(3)} ${comment}`);
 
 const evaluators: Evaluator[] = [];
 for (const rivalName in rivalRandomChars) {
