@@ -6,8 +6,8 @@
             .gameScreen {
                 margin: auto;
                 margin-top: 50px;
-                width: 800px;
-                height: 500px;
+                width: 1000px;
+                height: 600px;
                 background-color: whitesmoke;
                 border: black 1px solid;
                 border-radius: 16px;
@@ -15,22 +15,22 @@
 
             .screenText {
                 color: black;
-                font-size: 32px;
+                font-size: 40px;
             }
 
             .screenText-mini {
                 color: black;
-                font-size: 24px;
+                font-size: 32px;
             }
 
             .screenText-tt {
                 color: black;
-                font-size: 24px;
+                font-size: 32px;
             }
 
             .screenText-mini-tt {
                 color: black;
-                font-size: 20px;
+                font-size: 24px;
             }
 
             .textFlame {
@@ -49,7 +49,7 @@
             }
 
             .captionFlame {
-                height: 300px;
+                height: 360px;
                 padding-top: 100px;
             }
 
@@ -67,8 +67,8 @@
             }
 
             #loadingImage {
-                padding-top: 50px;
-                padding-left: 350px;
+                padding-top: 100px;
+                padding-left: 468px;
             }
 
             #mainScreen {
@@ -92,7 +92,7 @@
             .generatedText {
                 margin: auto;
                 text-align: left;
-                padding: 8px;
+                padding: 12px;
                 margin-top: 16px;
                 width: 70%;
                 border: black 1px solid;
@@ -104,7 +104,7 @@
             }
 
             #textSpace {
-                height: 320px;
+                height: 420px;
             }
 
             #gameTimerBar {
@@ -122,18 +122,19 @@
 
             .errorTitle {
                 color: red;
-                font-size: 80px;
+                font-size: 100px;
+                padding-bottom: 40px;
             }
 
             .errorMessage {
                 color: red;
-                font-size: 50px;
+                font-size: 60px;
             }
 
             #resetButton {
-                margin-left: 250px;
-                margin-top: 100px;
-                height: 64px;
+                margin-left: 340px;
+                margin-top: 130px;
+                height: 80px;
                 width: 300px;
                 font-size: 32px;
             }
@@ -159,6 +160,7 @@
         <!-- ゲーム終了画面 -->
         <div id="evaluatingScreen" class="gameScreen">
             <div id="evaluatingText" class="screenText">乱数を送信しています...</div>
+            <!-- https://icons8.com/preloaders/en/search/timer -->
             <img id="loadingImage" src="./static/786.gif" />
         </div>
 
@@ -167,7 +169,7 @@
             <div class="textFlame">
                 <div class="screenText headerText errorTitle">ERROR:</div>
                 <div class="screenText headerText errorMessage">
-                    Timed out !! response from random number generator is too slow.
+                    Timed out !! Response from random number generator is too slow.
                 </div>
             </div>
             <button id="resetButton" onclick="window.location.reload();">Reboot</button>
