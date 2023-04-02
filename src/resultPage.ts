@@ -430,7 +430,7 @@ const shareButton = document.getElementById("shareButton") as HTMLElement;
 totalScore.textContent = player.scores.total.toFixed(3);
 const comment = getResultComment(player.scores.total);
 resultComment.textContent = comment;
-shareButton.setAttribute("data-text", `Score:${player.scores.total.toFixed(3)} ${comment}`);
+shareButton.setAttribute("data-text", `${comment} (${player.scores.total.toFixed(3)})`);
 
 const evaluators: Evaluator[] = [];
 for (const rivalName in rivalRandomChars) {
