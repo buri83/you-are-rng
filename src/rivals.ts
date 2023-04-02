@@ -1,4 +1,3 @@
-import { getRandomInt } from "./random";
 import { ValidChar, isValidChar } from "./validChar";
 import MersenneTwister from "mersenne-twister";
 
@@ -8,7 +7,7 @@ export const rivalRandomChars: { [K in string]: ValidChar[] } = {};
 
 // メルセンヌ・ツイスタ
 // https://www.npmjs.com/package/mersenne-twister
-const generator = new MersenneTwister(17);
+const generator = new MersenneTwister(1771);
 function mt(min: number, max: number): number {
     return Math.floor(generator.random_int31() / ((2 ** 31 - 1) / max + min) + min);
 }
@@ -17,15 +16,29 @@ rivalRandomChars["メルセンヌ・ツイスタ"] = [...Array(NUMBER_OF_CHARS)]
     return ValidChar[index];
 });
 
-// 線形合同法（Park & Miller）
-let LCGSeeed = 271851;
+// 線形合同法（由来不詳）
+// https://ja.wikipedia.org/wiki/%E7%B7%9A%E5%BD%A2%E5%90%88%E5%90%8C%E6%B3%95
+let LCGSeeed = 1772;
 function LCG(min: number, max: number): number {
-    LCGSeeed = (48_271 * LCGSeeed) % (2 ** 31 - 1);
+    LCGSeeed = (1_103_515_245 * LCGSeeed + 12_345) % 2 ** 31;
     return Math.floor(LCGSeeed / ((2 ** 31 - 1) / max + min) + min);
 }
 
 rivalRandomChars["線形合同法"] = [...Array(NUMBER_OF_CHARS)].map(() => {
     const index: number = LCG(0, ValidChar.length - 1);
+    return ValidChar[index];
+});
+
+// RANDU
+// https://en.wikipedia.org/wiki/RANDU
+let RANDUSeeed = 19213;
+function RANDU(min: number, max: number): number {
+    RANDUSeeed = (65_539 * RANDUSeeed) % 2 ** 31;
+    return Math.floor(RANDUSeeed / ((2 ** 31 - 1) / max + min) + min);
+}
+
+rivalRandomChars["RANDU"] = [...Array(NUMBER_OF_CHARS)].map(() => {
+    const index: number = RANDU(0, ValidChar.length - 1);
     return ValidChar[index];
 });
 

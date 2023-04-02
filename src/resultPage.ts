@@ -3,6 +3,7 @@ import { Chart } from "chart.js/auto";
 import annotationPlugin from "chartjs-plugin-annotation";
 import { inflate } from "./compress";
 import { rivalRandomChars } from "./rivals";
+import { getResultComment } from "./resultComment";
 
 Chart.register(annotationPlugin);
 
@@ -30,6 +31,7 @@ playerRandomTexts.map((t) => {
 });
 
 const PorkerPatterns = ["allDifferent", "onePair", "twoPairs", "treeOfKind", "fullHouse", "fourOfKind+"] as const;
+
 // https://thescipub.com/pdf/jcssp.2012.1353.1357.pdf
 const ExpectedPorkerPatterns: { [K in typeof PorkerPatterns[number]]: number } = {
     allDifferent: 0.3024,
@@ -54,7 +56,7 @@ class Evaluator {
     private readonly pokerCompressTo = 9;
     readonly scores: Scores;
 
-    constructor(readonly name: string, private chars: ValidChar[]) {
+    constructor(readonly name: string, private chars: ValidChar[], readonly isPlayer: boolean) {
         for (const c of chars) {
             if (!isValidChar(c)) {
                 throw new Error(`Invalid: ${name} given ${c}`);
@@ -110,12 +112,12 @@ class Evaluator {
 
         {
             // ポーカー検定はグラフのわかりやすさのために、最初から (actual - expected) 計算されてる
-            // 他の指標よりも点数少なくなりがちなので、10倍にかさ増ししちゃう
             const poker = this.porker();
             const pokerError = poker
                 .map((p) => p.count ** 2 / ExpectedPorkerPatterns[p.key])
                 .reduce((total, cur) => total + cur, 0);
 
+            // 他の指標よりも点数少なくなりがちなので、10倍にかさ増ししちゃう
             score.porker = pokerError * 10;
             score.total += pokerError * 10;
         }
@@ -263,6 +265,9 @@ const ranking = document.getElementById("ranking") as HTMLElement;
 function insertRanking(rank: number, evaluator: Evaluator): void {
     const rankingCard = document.createElement("div");
     rankingCard.className = "rankingCard";
+    if (evaluator.isPlayer) {
+        rankingCard.className += " playerRankingCard";
+    }
 
     const scores = evaluator.scores;
     const cardTitle = document.createElement("div");
@@ -401,8 +406,8 @@ function insertRanking(rank: number, evaluator: Evaluator): void {
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        max: 0.15,
-                        min: -0.15,
+                        max: 0.1,
+                        min: -0.1,
                     },
                 },
             },
@@ -418,13 +423,15 @@ function insertRanking(rank: number, evaluator: Evaluator): void {
     ranking.insertBefore(rankingCard, null);
 }
 
-const player = new Evaluator("あなた", chars);
+const player = new Evaluator("あなた", chars, true);
 const totalScore = document.getElementById("totalScore") as HTMLElement;
+const resultComment = document.getElementById("resultComment") as HTMLElement;
 totalScore.textContent = player.scores.total.toFixed(3);
+resultComment.textContent = getResultComment(player.scores.total);
 
 const evaluators: Evaluator[] = [];
 for (const rivalName in rivalRandomChars) {
-    evaluators.push(new Evaluator(rivalName, rivalRandomChars[rivalName]));
+    evaluators.push(new Evaluator(rivalName, rivalRandomChars[rivalName], false));
 }
 evaluators.push(player);
 

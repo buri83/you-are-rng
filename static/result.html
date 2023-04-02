@@ -31,6 +31,11 @@
                 background-color: white;
             }
 
+            .playerRankingCard {
+                border: black 4px solid;
+                background-color: white;
+            }
+
             .screenText-mini-tt {
                 color: black;
                 font-size: 20px;
@@ -57,7 +62,7 @@
                 text-align: center;
                 padding: 6px;
                 margin-top: 16px;
-                width: 70%;
+                width: 60%;
                 border: black 1px solid;
             }
 
@@ -82,7 +87,7 @@
             <div class="resultComponent">
                 <div class="componentText">結果</div>
                 <div class="componentText">Score: <span id="totalScore"></span>pt</div>
-                <div class="componentText">あなたは何処からどう見ても完璧な乱数生成器です！</div>
+                <div id="resultComment" class="componentText"></div>
                 <div id="generatedTexts"></div>
             </div>
 

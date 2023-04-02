@@ -57,7 +57,7 @@
 
             #evaluatingText {
                 margin: auto;
-                padding-top: 150px;
+                padding-top: 200px;
                 text-align: center;
 
                 color: black;
@@ -144,15 +144,6 @@
             <div id="instructionFlame" class="screenText-mini textFlame"><span id="instruction"></span></div>
         </div>
 
-        <!-- ゲーム終了画面 -->
-        <div id="evaluatingScreen" class="gameScreen">
-            <div id="evaluatingText" class="screenText">
-                乱数の送信に成功しました<br />
-                評価しています....
-            </div>
-            <img id="loadingImage" src="./786.gif" />
-        </div>
-
         <!-- メインのゲーム画面 -->
         <div id="mainScreen" class="gameScreen">
             <div id="gameHeader" class="screenText textFlame headerText">乱数列を生成せよ！！！</div>
@@ -161,6 +152,12 @@
                 <div id="generatedTexts" class="screenText-mini-tt"></div>
             </div>
             <div id="gameTimerBar"></div>
+        </div>
+
+        <!-- ゲーム終了画面 -->
+        <div id="evaluatingScreen" class="gameScreen">
+            <div id="evaluatingText" class="screenText">乱数を送信しています...</div>
+            <img id="loadingImage" src="./786.gif" />
         </div>
 
         <!-- タイムオーバー -->
