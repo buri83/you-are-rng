@@ -9,6 +9,10 @@ Chart.register(annotationPlugin);
 const url = new URL(window.location.href);
 const resultCompressed = url.searchParams.get("result");
 if (!resultCompressed) {
+    const resultComment = document.getElementById("resultComment") as HTMLElement;
+    resultComment.style.paddingTop = "50px";
+    resultComment.innerHTML = "結果を表示できませんでした。<br>Retry を押すとゲームを始められます。";
+
     throw new Error();
 }
 
