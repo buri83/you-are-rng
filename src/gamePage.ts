@@ -1,6 +1,7 @@
 import { ValidChar } from "./validChar";
 import { deflate } from "./compress";
 import { getRandomInt } from "./random";
+import { enter, generated, sending, timeout, typeWriter } from "./sound";
 
 const RANDOM_TEXT_LENGTH = 40;
 const RANDOM_TEXT_COUNT = 5;
@@ -27,7 +28,6 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const keyBuffer = new KeyBuffer();
 window.addEventListener("keydown", (event) => {
-    console.log("event.key: ", event.key);
     keyBuffer.push(event.key);
 });
 
@@ -64,6 +64,7 @@ async function prologue(): Promise<void> {
     for (const t of captionTexts) {
         caption.innerHTML = t;
         await waitKey("enter");
+        enter.playAsSE();
     }
 
     // カウントダウン
@@ -84,7 +85,7 @@ async function prologue(): Promise<void> {
 async function evaluating(): Promise<void> {
     const evaluatingScreen = document.getElementById("evaluatingScreen") as HTMLElement;
     evaluatingScreen.style.display = "block";
-    await sleep(5_000);
+    await sleep(3_000);
     evaluatingScreen.style.display = "none";
 }
 
@@ -124,9 +125,9 @@ async function game(): Promise<ValidChar[][]> {
         }
 
         // タイムオーバー！
-        console.log("Time is over!");
         mainScreen.style.display = "none";
         timeIsOver.style.display = "block";
+        timeout.playAsSE();
     };
     timer();
 
@@ -139,6 +140,7 @@ async function game(): Promise<ValidChar[][]> {
         const currentRandomText: ValidChar[] = [];
         while (currentRandomText.length < RANDOM_TEXT_LENGTH) {
             const key = (await waitKey(...ValidChar)) as ValidChar;
+            typeWriter.playAsSE();
             currentRandomText.push(key);
             currentGeneratingText.innerHTML = `<tt>${currentRandomText.join("")}</tt>`;
         }
@@ -158,10 +160,13 @@ async function game(): Promise<ValidChar[][]> {
             </div>
         `;
         });
+        generated.playAsSE();
     }
     succeeded = true;
 
     await sleep(1000);
+
+    sending.playAsSE();
 
     mainScreen.style.display = "none";
     return playerRandomTexts;
@@ -179,7 +184,6 @@ async function main(): Promise<void> {
     );
 
     console.log(result);
-
     window.location.href = `result.html?result=${result}`;
 }
 main();

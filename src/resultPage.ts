@@ -4,7 +4,6 @@ import annotationPlugin from "chartjs-plugin-annotation";
 import { inflate } from "./compress";
 import { rivalRandomChars } from "./rivals";
 import { getResultComment } from "./resultComment";
-
 Chart.register(annotationPlugin);
 
 const url = new URL(window.location.href);
