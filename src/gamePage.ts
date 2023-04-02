@@ -101,6 +101,7 @@ async function game(): Promise<ValidChar[][]> {
 
     // バックグラウンドでタイマー表示する
     let succeeded = false;
+    let timedOut = false;
     const timer = async (): Promise<void> => {
         const timeIsOver = document.getElementById("timeIsOver") as HTMLElement;
         while (true) {
@@ -128,6 +129,7 @@ async function game(): Promise<ValidChar[][]> {
         // タイムオーバー！
         mainScreen.style.display = "none";
         timeIsOver.style.display = "block";
+        timedOut = true;
         timeout.playAsSE();
     };
     timer();
@@ -141,6 +143,10 @@ async function game(): Promise<ValidChar[][]> {
         const currentRandomText: ValidChar[] = [];
         while (currentRandomText.length < RANDOM_TEXT_LENGTH) {
             const key = (await waitKey(...ValidChar)) as ValidChar;
+            if (timedOut) {
+                throw new Error(`ERROR: Timed out !! Response from random number generator is too slow.`);
+            }
+
             typeWriter.playAsSE();
             currentRandomText.push(key);
             currentGeneratingText.innerHTML = `<tt>${currentRandomText.join("")}</tt>`;
