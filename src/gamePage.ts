@@ -1,6 +1,6 @@
 import { ValidChar } from "./validChar";
 import { getRandomInt } from "./random";
-import { enter, generated, sending, timeout, typeWriter } from "./sound";
+import { enter, gameStart, generated, sending, timeout, typeWriter } from "./sound";
 
 const RANDOM_TEXT_LENGTH = 40;
 const RANDOM_TEXT_COUNT = 5;
@@ -75,6 +75,8 @@ async function prologue(): Promise<void> {
         instruction.textContent = `残り ${remainingSecs.toFixed(1)} 秒`;
         await sleep(100 - (new Date().getTime() - st));
     }
+
+    gameStart.playAsSE();
 
     caption.textContent = "";
     instruction.textContent = "";

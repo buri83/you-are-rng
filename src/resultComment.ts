@@ -6,7 +6,7 @@ export function getResultComment(score: number): string {
 
     // 猿を超えて、円周率未満
     if (score > 3.32) {
-        return "すごい！！あなたは猿よりも乱数の生成がお上手なんですね！";
+        return "すごい！あなたは猿よりも乱数の生成がお上手なんですね！";
     }
 
     // 円周率を超えて、平方採中法未満
@@ -16,7 +16,7 @@ export function getResultComment(score: number): string {
 
     // 平方採中法を超えて、RANDU未満
     if (score > 1.981) {
-        return "いいですね！この調子で良い乱数生成器を目指してがんばりましょう！";
+        return "悪くないですね！良い乱数生成器を目指してがんばってください！";
     }
 
     // RANDUを超えて、線形合同法未満
@@ -26,7 +26,7 @@ export function getResultComment(score: number): string {
 
     // 線形合同法を超えて、メルセンヌ・ツイスタ未満
     if (score > 0.665) {
-        return "あなたは立派な乱数生成器です！きっと乱数生成器として食べていけることでしょう！";
+        return "あなたは立派な乱数生成器です！もしよければライブラリになってみませんか？";
     }
 
     // メルセンヌ・ツイスタを超えた

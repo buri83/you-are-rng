@@ -429,7 +429,7 @@ const shareButton = document.getElementById("shareButton") as HTMLElement;
 
 totalScore.textContent = player.scores.total.toFixed(3);
 const comment = getResultComment(player.scores.total);
-resultComment.textContent = comment;
+resultComment.innerHTML = comment;
 shareButton.setAttribute("data-text", `${comment} (${player.scores.total.toFixed(3)}pt)`);
 
 const evaluators: Evaluator[] = [];

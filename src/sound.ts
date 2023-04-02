@@ -17,3 +17,4 @@ export const enter = new SoundManager("./static/enter.mp3", 1);
 export const generated = new SoundManager("./static/generated.mp3", 0.5);
 export const sending = new SoundManager("./static/sending.mp3", 1);
 export const timeout = new SoundManager("./static/error.mp3", 1);
+export const gameStart = new SoundManager("./static/gameStart.mp3", 1);
