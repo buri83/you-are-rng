@@ -12,8 +12,8 @@ class SoundManager {
 }
 
 // https://soundeffect-lab.info/sound/button/
-export const typeWriter = new SoundManager("./typewriter.mp3", 0.4);
-export const enter = new SoundManager("./enter.mp3", 1);
-export const generated = new SoundManager("./generated.mp3", 0.5);
-export const sending = new SoundManager("./sending.mp3", 1);
-export const timeout = new SoundManager("./error.mp3", 1);
+export const typeWriter = new SoundManager("./static/typewriter.mp3", 0.4);
+export const enter = new SoundManager("./static/enter.mp3", 1);
+export const generated = new SoundManager("./static/generated.mp3", 0.5);
+export const sending = new SoundManager("./static/sending.mp3", 1);
+export const timeout = new SoundManager("./static/error.mp3", 1);
