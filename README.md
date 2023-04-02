@@ -1,6 +1,6 @@
 # あなたは乱数生成器ですか？
 
-<img src="./screenshots/result.png">
+<img src="./screenshots/twitter-card.png">
 
 もしあなたが乱数生成器であると主張するのであれば、ここで証明することができます。
 
@@ -13,6 +13,8 @@ https://are-you-rng.game.burion.net/
 スコアは誤差を表しており、 0 に近いほど良い値です。
 
 # 評価の読み方
+
+<img src="./screenshots/result.png">
 
 ## 頻度検定
 
