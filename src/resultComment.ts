@@ -16,7 +16,7 @@ export function getResultComment(score: number): string {
 
     // 平方採中法を超えて、RANDU未満
     if (score > 1.981) {
-        return "悪くないですね！良い乱数生成器を目指してがんばってください！";
+        return "悪くないですね！より良い乱数を作れるようにがんばってください！";
     }
 
     // RANDUを超えて、線形合同法未満
