@@ -20,7 +20,7 @@
             }
 
             .componentText {
-                padding-bottom: 20px;
+                padding-bottom: 8px;
             }
 
             .rankingCard {
@@ -80,6 +80,13 @@
                 padding: 16px;
                 border-bottom: black 1px solid;
             }
+
+            #retryButton {
+                margin-top: 16px;
+                height: 50px;
+                width: 250px;
+                font-size: 24px;
+            }
         </style>
     </head>
     <body>
@@ -89,6 +96,7 @@
                 <div class="componentText">Score: <span id="totalScore"></span>pt</div>
                 <div id="resultComment" class="componentText"></div>
                 <div id="generatedTexts"></div>
+                <button id="retryButton" onclick="location.href = `game.html`">Retry</button>
             </div>
 
             <div class="resultComponent">
