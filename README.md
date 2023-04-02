@@ -1,6 +1,6 @@
 # あなたは乱数生成器ですか？
 
-<img src="./screenshots/result-graph.png">
+<img src="./screenshots/result.png">
 
 もしあなたが乱数生成器であると主張するのであれば、ここで証明することができます。
 
